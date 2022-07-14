@@ -5,8 +5,11 @@ import com.teenagedlime3.realisticmobsproject.entity.ModEntityTypes;
 import com.teenagedlime3.realisticmobsproject.entity.client.RaccoonRenderer;
 import com.teenagedlime3.realisticmobsproject.item.ItemInit;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -60,6 +63,11 @@ public class RealisticMobsProject {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+
+        SpawnPlacements.register(ModEntityTypes.RACCOON.get(),
+                SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules);
     }
 
 }
